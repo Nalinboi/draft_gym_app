@@ -8,13 +8,56 @@ class ClickbaitContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(8),
-      child: Text(containerName),
-      color: Colors.grey[300],    
-    );
+    // The InkWell wraps the custom flat button widget.
+    return InkWell(
+        // When the user taps the button, show a snackbar.
+        onTap: () {
+          Scaffold.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Clicked: ' + containerName),            
+            ),
+          );
+          print('Clicked: ' + containerName);
+        },
+        child: Container(
+            width: 500.0,
+            padding: const EdgeInsets.all(8),
+            color: Colors.black87,
+            child: Column(children: [
+              Text(
+                containerName,
+                style: TextStyle(
+                  fontSize: 36,
+                  color: Colors.white,
+                ),
+              ),
+            ])));
   }
-
 }
 
-
+/**
+ * @override
+  Widget build(BuildContext context) {
+    return Inkwell(
+        onTap: (){
+          print("Container clicked");
+        },
+        child: Container(
+          width: 500.0,
+          padding: const EdgeInsets.all(8),
+          color: Colors.black87,
+          child: Column(
+              children: [
+                Text(
+                  containerName,
+                  style: TextStyle(
+                    fontSize: 36,
+                    color: Colors.white,
+                  ),
+                ),
+              ]
+          ),
+        )
+    );
+  }
+ */
