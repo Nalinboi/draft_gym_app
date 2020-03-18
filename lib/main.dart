@@ -9,7 +9,11 @@
 // ![A scaffold with a bottom navigation bar containing three bottom navigation
 // bar items. The first one is selected.](https://flutter.github.io/assets-for-api-docs/assets/material/bottom_navigation_bar.png)
 
+import 'package:draft_gym_app/clickbait_grid.dart';
 import 'package:flutter/material.dart';
+
+import 'clickbait_container.dart';
+
 
 void main() => runApp(MyApp());
 
@@ -34,72 +38,9 @@ class MyStatefulWidget extends StatefulWidget {
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-    TextStyle(
-      fontSize: 30, 
-      fontWeight: 
-      FontWeight.bold
-    );
-
+  static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static List<Widget> _widgetOptions = <Widget>[
-    GridView.count( //the following is for the grid layout in the first screen
-      primary: false,
-      padding: const EdgeInsets.all(20),
-      crossAxisSpacing: 10,
-      mainAxisSpacing: 10,
-      crossAxisCount: 2,
-      children: <Widget>[
-        new GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => SecondRoute()), //does this work
-              );
-            },
-            child: Container(
-              padding: const EdgeInsets.all(8),
-              child: const Text('He\'d have you all unravel at the'),
-              color: Colors.teal[100],
-            ),
-        ),                
-        Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text('Revolution, they...'),
-          color: Colors.teal[600],
-        ),
-        Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text('He\'d have you all unravel at the'),
-          color: Colors.teal[100],
-        ),
-        Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text('Heed not the rabble'),
-          color: Colors.teal[200],
-        ),
-        Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text('Sound of screams but the'),
-          color: Colors.teal[300],
-        ),
-        Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text('Who scream'),
-          color: Colors.teal[400],
-        ),
-        Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text('Revolution is coming...'),
-          // child: Image.asset('assets/images/IMG_6237.jpg'), //   <-- image
-          color: Colors.teal[500],
-        ),
-        Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text('Revolution, they...'),
-          color: Colors.teal[600],
-        ),
-      ],
-    ), // this concludes page one
+    ClickbaitGrid(), //makes it work the same way, but seperates into other widgets. 
     Text(
       'Index 1: Business',
       style: optionStyle,
@@ -125,7 +66,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('GYM SHIT ONLY'),
-        // backgroundColor: Color.fromARGB(a, r, g, b),
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
