@@ -18,6 +18,10 @@ class ClickbaitContainer extends StatelessWidget {
             ),
           );
           print('Clicked: ' + containerName);
+          Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => SecondRoute()),
+          );
         },
         child: Container(
             width: 500.0,
@@ -35,29 +39,21 @@ class ClickbaitContainer extends StatelessWidget {
   }
 }
 
-/**
- * @override
+class SecondRoute extends StatelessWidget {
+  @override
   Widget build(BuildContext context) {
-    return Inkwell(
-        onTap: (){
-          print("Container clicked");
-        },
-        child: Container(
-          width: 500.0,
-          padding: const EdgeInsets.all(8),
-          color: Colors.black87,
-          child: Column(
-              children: [
-                Text(
-                  containerName,
-                  style: TextStyle(
-                    fontSize: 36,
-                    color: Colors.white,
-                  ),
-                ),
-              ]
-          ),
-        )
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Second Route"),
+      ),
+      body: Center(
+        child: RaisedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text('Go back!'),
+        ),
+      ),
     );
   }
- */
+}
