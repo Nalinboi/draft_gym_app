@@ -21,38 +21,25 @@ void main() => runApp(MyApp());
 
 /// This Widget is the main application widget.
 class MyApp extends StatelessWidget {
-  static const String _title = 'Flutter Code Sample';
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<ThemeChanger>(
       builder: (_) => ThemeChanger(ThemeData.dark()),
-      child: MaterialAppWithTheme(title: _title), 
+      child: MyAppWithTheme(),
     );
   }
 }
 
-class MaterialAppWithTheme extends StatelessWidget {
+class MyAppWithTheme extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Provider.of<ThemeChanger>(context);
-    return MaterialApp(      
+    return MaterialApp(
       home: MyStatefulWidget(),
       theme: theme.getTheme(),
     );
   }
 }
-
-  final String _title;
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: MyStatefulWidget(),
-      title: _title,        
-    );
-  }
-}
-
 
 class MyStatefulWidget extends StatefulWidget {
   MyStatefulWidget({Key key}) : super(key: key);
