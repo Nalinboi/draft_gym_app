@@ -10,7 +10,9 @@
 // bar items. The first one is selected.](https://flutter.github.io/assets-for-api-docs/assets/material/bottom_navigation_bar.png)
 
 import 'package:draft_gym_app/clickbait_grid.dart';
+import 'package:draft_gym_app/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'clickbait_container.dart';
 
@@ -22,12 +24,35 @@ class MyApp extends StatelessWidget {
   static const String _title = 'Flutter Code Sample';
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: _title,
-      home: MyStatefulWidget(),
+    return ChangeNotifierProvider<ThemeChanger>(
+      builder: (_) => ThemeChanger(ThemeData.dark()),
+      child: MaterialAppWithTheme(title: _title), 
     );
   }
 }
+
+class MaterialAppWithTheme extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeChanger>(context);
+    return MaterialApp(      
+      home: MyStatefulWidget(),
+      theme: theme.getTheme(),
+    );
+  }
+}
+
+  final String _title;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: MyStatefulWidget(),
+      title: _title,        
+    );
+  }
+}
+
 
 class MyStatefulWidget extends StatefulWidget {
   MyStatefulWidget({Key key}) : super(key: key);
@@ -65,7 +90,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('GYM SHIT ONLY'),
+        title: const Text('GYM SHIT ONLY'),                
+        backgroundColor: Color.fromARGB(100, 0, 0, 0),
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
@@ -93,6 +119,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber[800],
         onTap: _onItemTapped,
+        backgroundColor: Colors.green,
+        // type: BottomNavigationBarType.fixed, //this will get rid of color problem.
       ),
     );
   }
