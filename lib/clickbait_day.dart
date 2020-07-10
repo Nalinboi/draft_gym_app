@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class ClickbaitContainer extends StatelessWidget {
-  final String containerName;
+class ClickbaitDay extends StatelessWidget {
+  final String dayName;
 
-  const ClickbaitContainer({this.containerName});
+  const ClickbaitDay({this.dayName});
 
   @override
   Widget build(BuildContext context) {
@@ -13,13 +13,13 @@ class ClickbaitContainer extends StatelessWidget {
         onTap: () {
           Scaffold.of(context).showSnackBar(
             SnackBar(
-              content: Text('Clicked: ' + containerName),            
+              content: Text('Clicked: ' + dayName),            
             ),
           );
-          print('Clicked: ' + containerName);
+          print('Clicked: ' + dayName);
           Navigator.push(
               context,
-              this.containerName == 'Biceps' ? MaterialPageRoute(builder: (context) => BicepsRoute()) : MaterialPageRoute(builder: (context) => SecondRoute()),              
+              this.dayName == 'Monday' ? MaterialPageRoute(builder: (context) => MondayRoute()) : MaterialPageRoute(builder: (context) => TuesdayRoute()),              
               // MaterialPageRoute(builder: (context) => SecondRoute()), 
           );
         },
@@ -29,7 +29,7 @@ class ClickbaitContainer extends StatelessWidget {
             color: Colors.black87,
             child: Column(children: [
               Text(
-                containerName,
+                dayName,
                 style: TextStyle(
                   fontSize: 36,
                   color: Colors.white,
@@ -39,12 +39,12 @@ class ClickbaitContainer extends StatelessWidget {
   }
 }
 
-class SecondRoute extends StatelessWidget {
+class MondayRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Second Route"),
+        title: Text("Monday Route"),
       ),
       body: Center(
         child: RaisedButton(
@@ -58,12 +58,12 @@ class SecondRoute extends StatelessWidget {
   }
 }
 
-class BicepsRoute extends StatelessWidget {
+class TuesdayRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Biceps Route"),
+        title: Text("Tuesday Route"),
       ),
       body: Center(
         child: RaisedButton(
